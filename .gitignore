@@ -36,5 +36,5 @@ Icon
 .Trashes
 
 # CodeBlocks files
-.exe
-.o
+*.exe
+*.o
