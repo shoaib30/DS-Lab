@@ -73,19 +73,22 @@ int isEmpty(stack *s)
 }
 void push(stack *s,char x)
 {
-
+    if(!(isFull(s)))
+    {
         s->top+=1;
-
-
-
         s->items[s->top]=x;
-
+    }
 }
 char pop(stack *s)
 {
-    char temp=s->items[s->top];
-    s->top--;
-    return temp;
+    if(!(isEmpty(s)))
+    {
+        char temp=s->items[s->top];
+        s->top--;
+        return temp;
+    }
+    else
+        return 'n';
 }
 void infix_postfix(char infix[size],char postfix[size])
 {
@@ -100,7 +103,9 @@ void infix_postfix(char infix[size],char postfix[size])
         sym=infix[i];
         while(F(s.items[s.top])>G(sym))
         {
-            postfix[j++]=pop(&s);
+            ch=pop(&s);
+            if(ch!='n')
+                postfix[j++]=ch;
         }
         if(F(s.items[s.top])!=G(sym))
         {
@@ -123,7 +128,6 @@ int main()
     char infix[size],postfix[size];
     cout<<"Enter the INFIX expression (without spaces) : ";
     cin>>infix;
-    cout<<"processing  "<<strlen(infix);
     infix_postfix(infix,postfix);
     cout<<"\n\nPOSTFIX Expression : "<<postfix;
     return 0;
