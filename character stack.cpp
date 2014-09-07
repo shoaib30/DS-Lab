@@ -17,24 +17,24 @@ void disp(stack *s)
 }
 int isFull(stack *s)
 {
-    if(s->top==10)
+    if(s->top==size)
     {
-        return false;
+        return true;
     }
     else
     {
-        return true;
+        return false;
     }
 }
 int isEmpty(stack *s)
 {
     if(s->top<=-1)
     {
-        return false;
+        return true;
     }
     else
     {
-        return true;
+        return false;
     }
 }
 void push(stack *s,char x)
@@ -62,7 +62,7 @@ int main()
         switch(ch)
         {
             case 1:
-                if(isFull(&s))
+                if(!(isFull(&s)))
                 {
                     cout<<"\nEnter the number to push : ";
                     cin>>x;
@@ -74,7 +74,7 @@ int main()
                 }
                 break;
             case 2:
-                if(isEmpty((&s)))
+                if(!(isEmpty((&s))))
                 {
                     cout<<"popped : "<<pop(&s);
                 }
