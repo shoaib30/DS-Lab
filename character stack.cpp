@@ -1,9 +1,10 @@
 #include<iostream>
 using namespace std;
+#define size 10
 struct stack
 {
     int top;
-    char items[10];
+    char items[size];
 };
 void disp(stack *s)
 {
