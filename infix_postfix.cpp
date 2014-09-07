@@ -124,7 +124,6 @@ void infix_postfix(char infix[size],char postfix[size])
 }
 int main()
 {
-    //stack s;
     char infix[size],postfix[size];
     cout<<"Enter the INFIX expression (without spaces) : ";
     cin>>infix;
