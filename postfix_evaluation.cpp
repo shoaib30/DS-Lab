@@ -7,7 +7,7 @@ struct stack
     int top;
     char items[size];
 };
-int isFull(stack *s)
+/*int isFull(stack *s)
 {
     if(s->top==size)
     {
@@ -28,25 +28,17 @@ int isEmpty(stack *s)
     {
         return false;
     }
-}
+}*/
 void push(char x,stack *s)
 {
-    if(!(isFull(s)))
-    {
-        s->top+=1;
-        s->items[s->top]=x;
-    }
+    s->top+=1;
+    s->items[s->top]=x;
 }
 char pop(stack *s)
 {
-    if(!(isEmpty(s)))
-    {
-        char temp=s->items[s->top];
-        s->top--;
-        return temp;
-    }
-    else
-        return 'n';
+    char temp=s->items[s->top];
+    s->top--;
+    return temp;
 }
 int OP(char symbol,int op1,int op2)
 {
