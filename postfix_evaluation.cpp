@@ -62,13 +62,12 @@ int OP(char symbol,int op1,int op2)
         return (op1/op2);
     case '$':
     case '^':
-        return (op1^op2);
+        return (op1^op2);//can not use to the power of a double hence both operands are integers
     }
 }
 int main()
 {
     int i,op1,op2,result;
-    //double result,op1,op2;
     stack s;
     s.top=-1;
     char symbol,postfix[size];
