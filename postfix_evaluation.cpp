@@ -1,12 +1,14 @@
 #include<iostream>
 #include<string.h>
 #define size 30
+#include<math.h>
 using namespace std;
 struct stack
 {
     int top;
     char items[size];
 };
+//isFull and isEmpty is not required as stack will never overflow or underflow
 /*int isFull(stack *s)
 {
     if(s->top==size)
@@ -54,7 +56,7 @@ int OP(char symbol,int op1,int op2)
         return (op1/op2);
     case '$':
     case '^':
-        return (op1^op2);//can not use to the power of a double hence both operands are integers
+        return (pow(op1,op2));//can not use to the power of a double hence both operands are integers
     }
 }
 int main()
