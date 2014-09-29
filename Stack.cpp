@@ -2,39 +2,27 @@
 using namespace std;
 struct stack
 {
-    int top;
-    int items[10];
+    int top,items[10];
 };
 void disp(stack *s)
 {
-    int i;
     cout<<"\nDisplaying Stack: ";
-    for(i=0;i<=s->top;i++)
-    {
+    for(int i=0;i<=s->top;i++)
         cout<<s->items[i]<<",";
-    }
 }
 int isFull(stack *s)
 {
     if(s->top==10)
-    {
-        return false;
-    }
-    else
-    {
         return true;
-    }
+    else
+        return false;
 }
 int isEmpty(stack *s)
 {
     if(s->top<=-1)
-    {
-        return false;
-    }
-    else
-    {
         return true;
-    }
+    else
+        return false;
 }
 void push(stack *s,int x)
 {
@@ -60,26 +48,20 @@ int main()
         switch(ch)
         {
             case 1:
-                if(isFull(&s))
+                if(!(isFull(&s)))
                 {
                     cout<<"\nEnter the number to push : ";
                     cin>>x;
                     push(&s,x);
                 }
                 else
-                {
                     cout<<"Stack Overflow";
-                }
                 break;
             case 2:
-                if(isEmpty((&s)))
-                {
+                if(!(isEmpty((&s))))
                     cout<<"popped : "<<pop(&s);
-                }
                 else
-                {
                     cout<<"Stack Underflow";
-                }
                 break;
             case 3:
                 disp(&s);
@@ -92,6 +74,5 @@ int main()
                 break;
         }
     }
-    cout<<"\n\n\n\nEND!";
     return 0;
 }
