@@ -8,29 +8,6 @@ struct stack
     int top;
     char items[size];
 };
-//isFull and isEmpty is not required as stack will never overflow or underflow
-/*int isFull(stack *s)
-{
-    if(s->top==size)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-int isEmpty(stack *s)
-{
-    if(s->top<=-1)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}*/
 void push(char x,stack *s)
 {
     s->top+=1;
@@ -56,7 +33,7 @@ int OP(char symbol,int op1,int op2)
         return (op1/op2);
     case '$':
     case '^':
-        return (pow(op1,op2));//can not use to the power of a double hence both operands are integers
+        return (pow(op1,op2));
     }
 }
 int main()
