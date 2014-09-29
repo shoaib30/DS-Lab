@@ -52,24 +52,16 @@ struct stack
 int isFull(stack *s)
 {
     if(s->top==size)
-    {
         return true;
-    }
     else
-    {
         return false;
-    }
 }
 int isEmpty(stack *s)
 {
     if(s->top<=-1)
-    {
         return true;
-    }
     else
-    {
         return false;
-    }
 }
 void push(stack *s,char x)
 {
@@ -108,18 +100,12 @@ void infix_postfix(char infix[size],char postfix[size])
                 postfix[j++]=ch;
         }
         if(F(s.items[s.top])!=G(sym))
-        {
             push(&s,sym);
-        }
         else
-        {
             ch=pop(&s);
-        }
     }
     while(s.items[s.top]!='#')
-    {
         postfix[j++]=pop(&s);
-    }
     postfix[j]='\0';
 }
 int main()
