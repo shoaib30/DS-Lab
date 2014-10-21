@@ -85,22 +85,20 @@ NODE delete_rear(NODE &root,int &n)
     n--;
     return root;
 }
-void search_list(NODE root,int key)
+int search_list(NODE &root,int key)
 {
-    int x=1,i=0;
+    int pos=1;
     NODE temp=root;
     while(temp!=NULL)
     {
         if(temp->data==key)
         {
-            cout<<endl<<key<<" Found at : "<<x;
-            i++;
+            return pos;
         }
-        x++;
+        pos++;
         temp=temp->link;
     }
-    if(i==0)
-        cout<<"\nNot Found";
+    return 0;
 }
 void display(NODE root,int &n)
 {
@@ -117,36 +115,54 @@ void display(NODE root,int &n)
     }
     cout<<"\nTotal:"<<n;
 }
-NODE insert_position(NODE root,int x,int pos,int &n)
+NODE insert_position(NODE &root,int x,int pos,int &n)
 {
     NODE temp=root,temp2;
     temp2=get_node();
     temp2->data=x;
     for(int i=1;i<pos-1;i++)
-    {
         temp=temp->link;
-    }
     temp2->link=temp->link;
     temp->link=temp2;
     n++;
     return root;
 }
-NODE delete_position(NODE root,int pos,int &n)
+NODE delete_position(NODE &root,int pos,int &n)
 {
     NODE temp=root;
-    if(temp->link==NULL)
+    if(root==NULL)
+    {
+        cout<<"\nList Empty";
+        return root;
+    }
+    else if(temp->link==NULL)
     {
         root=NULL;
-        cout<<"Element Removed : "<<temp->data;
+        cout<<"\nElement Removed : "<<temp->data;
+        return root;
+    }
+    else if(pos==1)
+    {
+        root=delete_front(root,n);
         return root;
     }
     for(int i=1;i<pos-1;i++)
-    {
         temp=temp->link;
-    }
-    cout<<"Element Removed : "<<(temp->link)->data;
+    cout<<"\nElement Removed : "<<(temp->link)->data;
     temp->link=(temp->link)->link;
     n--;
+    return root;
+}
+NODE delete_all_x(NODE &root,int x, int &n)
+{
+    NODE temp;
+    int i=-1;
+    while(i)
+    {
+        i=search_list(root,x);
+        if(i>0)
+            root=delete_position(root,i,n);
+    }
     return root;
 }
 int main()
@@ -164,7 +180,8 @@ int main()
         cout<<"6.Search"<<endl;
         cout<<"7.Insert at position"<<endl;
         cout<<"8.Delete at position"<<endl;
-        cout<<"9.Exit"<<endl;
+        cout<<"9.Delete all instances of"<<endl;
+        cout<<"10.Exit"<<endl;
         cin>>ch;
         switch(ch)
         {
@@ -191,7 +208,11 @@ int main()
         case 6:
             cout<<"\nEnter element to search : ";
             cin>>x;
-            search_list(root,x);
+            x=search_list(root,x);
+            if(x!=0)
+                cout<<"\nFound at : "<<x;
+            else
+                cout<<"\nNot Found ";
             break;
         case 7:
             cout<<"\nEnter Position to Insert at : ";
@@ -201,7 +222,7 @@ int main()
                 cout<<"\nWrong Position";
                 break;
             }
-            cout<<"Enter the element to insert : ";
+            cout<<"\nEnter the element to insert : ";
             cin>>x;
             root=insert_position(root,x,pos,nodes);
             break;
@@ -216,6 +237,11 @@ int main()
             root=delete_position(root,pos,nodes);
             break;
         case 9:
+            cout<<"\nEnter the Element to delete : ";
+            cin>>x;
+            root=delete_all_x(root,x,nodes);
+            break;
+        case 10:
             n=0;
             break;
         default:
