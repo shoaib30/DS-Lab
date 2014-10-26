@@ -14,7 +14,7 @@ NODE get_node()
         cout<<"Memory Full";
     return x;
 }
-NODE insert_front(NODE root, int item,int &n)
+NODE insert_front(NODE &root, int item,int &n)
 {
     NODE temp;
     temp=get_node();
@@ -23,7 +23,7 @@ NODE insert_front(NODE root, int item,int &n)
     n++;
     return temp;
 }
-NODE delete_front(NODE root,int &n)
+NODE delete_front(NODE &root,int &n)
 {
     NODE temp;
     if(root==NULL)
