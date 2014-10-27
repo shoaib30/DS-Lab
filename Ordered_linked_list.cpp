@@ -103,29 +103,14 @@ NODE insert_position(NODE &root,int x,int pos,int &n)
     n++;
     return root;
 }
-int search_list(NODE &root,int key)
-{
-    int pos=1;
-    NODE temp=root;
-    while(temp!=NULL)
-    {
-        if(temp->data==key)
-        {
-            return pos;
-        }
-        pos++;
-        temp=temp->link;
-    }
-    return 0;
-}
 int get_pos(NODE root,int x)
 {
     int c=1;
     NODE temp=root;
     if(root==NULL)
         return c;
-    else if(temp->data==x)
-        return x;
+    else if(temp->data>=x)
+        return c;
     c++;
     while(temp->link!=NULL)
     {
@@ -222,7 +207,7 @@ int main()
             switch(ch)
             {
             case 1:
-                root3=merge_list(root1,root3,nodes1);
+                root3=merge_list(root1,root2,nodes1);
                 break;
             case 2:
                 cout<<"\n\nMerged list : ";
