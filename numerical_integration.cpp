@@ -91,7 +91,7 @@ class rect:public integ
     }
 
 };
-class infi_post
+/*class infi_post
 {
     public:
     int G(char sy)
@@ -252,8 +252,8 @@ class post_eval
     }
     public:
 
-}
-class irregular:public integ,private infi_post,
+};
+class irregular:public integ,private infi_post
 {
     char infix[size],postfix[size];
     public:
@@ -268,17 +268,17 @@ class irregular:public integ,private infi_post,
         cout<<"\npost: "<<postfix;
     }
 
-};
+};*/
 int main()
 {
-//    circle c1;
-//    c1.get_radius();
-//    c1.display();
-//    rect r1;
-//    r1.get_side();
-//    r1.display();
-    irregular i1;
-    i1.get_data();
-    i1.convert();
+    circle c1;
+    c1.get_radius();
+    c1.display();
+    rect r1;
+    r1.get_side();
+    r1.display();
+    //irregular i1;
+    //i1.get_data();
+    //i1.convert();
     return (0);
 }
