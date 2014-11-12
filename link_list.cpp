@@ -46,12 +46,17 @@ NODE delete_front(NODE &root,int &n)
     n--;
     return root;
 }
-void insert_rear(NODE &root,int item,int &n)
+NODE insert_rear(NODE &root,int item,int &n)
 {
     NODE temp1,temp2;
     temp2=get_node();
     temp2->data=item;
     temp2->link=NULL;
+    if(root==NULL)
+    {
+        root=temp2;
+        return root;
+    }
     temp1=root;
     while(temp1->link!=NULL)
     {
@@ -59,6 +64,7 @@ void insert_rear(NODE &root,int item,int &n)
     }
     temp1->link=temp2;
     n++;
+    return root;
 }
 NODE delete_rear(NODE &root,int &n)
 {
@@ -193,7 +199,7 @@ int main()
         case 2:
             cout<<"\nEnter the element to enter : ";
             cin>>x;
-            insert_rear(root,x,nodes);
+            root=insert_rear(root,x,nodes);
             break;
         case 3:
             root=delete_front(root,nodes);
