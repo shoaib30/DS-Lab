@@ -33,7 +33,7 @@ void insert_after(int b,int x)
 }
 void free_node(int p)
 {
-    nodelist[p].next=avail;
+    nodelist[p].next=avail; //shreyansh here: what if the node being deleted is in the middle of the list... then the element pointing to this deleted element will be pointing to avail and the next one wont be pointed by anyone 
     avail=p;
 }
 void display()
