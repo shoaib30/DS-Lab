@@ -22,7 +22,7 @@ void insert_after(int b,int x)
 {
     if(b==-1)//@shrey if u insert at a pos already taken its all mixed up
     {
-        cout<<"Not Allowed";
+        cout<<"Not Allowed";//@shoaib that's why we cannot have insert at pos... we can only have insert after pos... this function won't jumble it up
         return;
     }
     int q=get_node();
