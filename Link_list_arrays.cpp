@@ -20,7 +20,7 @@ int get_node()
 }
 void insert_after(int b,int x)
 {
-    if(b==-1)
+    if(b==-1)//@shrey if u insert at a pos already taken its all mixed up
     {
         cout<<"Not Allowed";
         return;
