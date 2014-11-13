@@ -41,8 +41,8 @@ NODE delete_front(NODE &root,int &n)
     }
     temp=root;
     cout<<"Element Removed : "<<temp->data;
-    delete temp;
     root=root->link;
+    delete temp;
     n--;
     return root;
 }
