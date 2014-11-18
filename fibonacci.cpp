@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-int fib(int x)
+void fib(int x)
 {
     int i,c,a=0,b=1;
     if(x>=1)cout<<a;
@@ -19,7 +19,7 @@ int main()
     cout<<"Enter a number : ";
     cin>>a;
     cout<<"\n\nFibonacci series : ";
-    f=fib(a);
+    fib(a);
     return 0;
 }
 
