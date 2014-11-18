@@ -57,16 +57,78 @@ void postorder(NODE p)
         cout<<p->data<<"->";
     }
 }
+NODE search_node(NODE root,int x)
+{
+    if(root==NULL)
+        return NULL;
+    else if(root->data==x)
+        return root;
+    else
+    {
+        if(root->data>x)
+            return search_node(root->left,x);
+        else
+            return search_node(root->right,x);
+    }
+}
+NODE largest(NODE root)
+{
+    if(root==NULL)
+        return root;
+    else if(root->right==NULL)
+        return root;
+    else
+        return largest(root->right);
+}
+NODE smallest(NODE root)
+{
+    if(root==NULL)
+        return root;
+    if(root->left==NULL)
+        return root;
+    else
+        return smallest(root->left);
+}
+int no_of_leaves(NODE root,int &i)
+{
+    if(root==NULL)
+        return i;
+    else if(root->right==NULL&&root->left==NULL)
+        i++;
+    else
+    {
+        i=no_of_leaves(root->left,i);
+        i=no_of_leaves(root->right,i);
+    }
+    return i;
+}
+int total_nodes(NODE root,int &i)
+{
+    if(root==NULL)
+        return i;
+    else
+    {
+        i=total_nodes(root->left,i);
+        i++;
+        i=total_nodes(root->right,i);
+    }
+    return i;
+}
 int main()
 {
     int flag=1,ch,x;
-    NODE root=NULL;
+    NODE root=NULL,y;
     while(flag)
     {
         cout<<"\n1.Insert";
         cout<<"\n2.Preorder";
         cout<<"\n3.Inorder";
         cout<<"\n4.Postorder";
+        cout<<"\n5.Search";
+        cout<<"\n6.Largest Element";
+        cout<<"\n7.Smallest Element";
+        cout<<"\n8.Number of leaves";
+        cout<<"\n9.Number of Nodes";
         cout<<"\n10.Exit\n";
         cin>>ch;
         switch(ch)
@@ -87,6 +149,36 @@ int main()
         case 4:
             cout<<"\nPostorder :";
             postorder(root);
+            break;
+        case 5:
+            cout<<"\nEnter the element to search : ";
+            cin>>x;
+            if(search_node(root,x)!=NULL)
+                cout<<"\nElement Found ";
+            else
+                cout<<"\nElement not found";
+            break;
+        case 6:
+            y=largest(root);
+            if(y!=NULL)
+                cout<<endl<<y->data<<" is the largest element ";
+            else
+                cout<<"List empty";
+            break;
+        case 7:
+            y=smallest(root);
+            if(y!=NULL)
+                cout<<endl<<y->data<<" is the smallest element ";
+            else
+                cout<<"List empty";
+            break;
+        case 8:
+            x=0;
+            cout<<"\nNumber of leaves = "<<no_of_leaves(root,x);
+            break;
+        case 9:
+            x=0;
+            cout<<"\nTotal Number of Nodes = "<<total_nodes(root,x);
             break;
         case 10:
             flag=0;
