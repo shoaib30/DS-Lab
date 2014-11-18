@@ -137,14 +137,14 @@ NODE delete_position(NODE &head,int pos)
     {
         return delete_front(head);
     }
-    for(i=1;i<pos-1&&temp->next!=NULL;i++)
+    for(i=1;i<pos-1&&temp->next->next!=NULL;i++)
         temp=temp->next;
     if(i<pos-1)
     {
         cout<<"\nInvalid Position\n";
         return head;
     }
-    else if(temp->next==NULL)
+    else if(temp->next->next==NULL)
         return delete_rear(head);
     cout<<"\nElement removed : "<<temp->next->data;
     delete temp->next;
