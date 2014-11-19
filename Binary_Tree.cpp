@@ -25,7 +25,7 @@ NODE insert_node(NODE &parent,int x)
     {
         if(parent->data>x)
             parent->left=insert_node(parent->left,x);
-        else
+        else if(parent->data<x)
             parent->right=insert_node(parent->right,x);
     }
     return parent;
@@ -114,6 +114,77 @@ int total_nodes(NODE root,int &i)
     }
     return i;
 }
+NODE del_node(NODE root,int x)
+{
+    if(root==NULL)
+    {
+        cout<<"Empty";
+        return root;
+    }
+    else if(root->data==x&&root->left==NULL&&root->right==NULL)
+    {
+        delete root;
+        return NULL;
+    }
+    NODE parent=NULL,cur=root,q;
+    while(cur!=NULL)
+    {
+        if(cur->data==x)
+            break;
+        parent=cur;
+        if(cur->data>x)
+            cur=cur->left;
+        else
+            cur=cur->right;
+    }
+    if(cur==NULL)
+    {
+        cout<<"Not found";
+        return root;
+    }
+    else if(cur->left==NULL||cur->right==NULL)
+    {
+        if(cur->right==NULL)
+            q=cur->left;
+        else if(cur->left==NULL)
+            q=cur->right;
+        if(parent==NULL)
+            root=q;
+        else if(parent->left==cur)
+            parent->left=q;
+        else if(parent->right==cur)
+            parent->right=q;
+        delete cur;
+        return root;
+    }
+    else
+    {
+        NODE temp=cur,rp=cur->right,s=rp->left;
+        while(s!=NULL)
+        {
+            temp=rp;
+            rp=s;
+            s=rp->left;
+        }
+        if(temp!=cur)
+        {
+            temp->left=rp->right;
+            rp->right=cur->right;
+        }
+        rp->left=cur->left;
+        if(parent==NULL)
+            root=rp;
+        else
+        {
+            if(parent->right==cur)
+                parent->right=rp;
+            else
+                parent->left=rp;
+        }
+        delete cur;
+        return root;
+    }
+}
 int main()
 {
     int flag=1,ch,x;
@@ -129,7 +200,8 @@ int main()
         cout<<"\n7.Smallest Element";
         cout<<"\n8.Number of leaves";
         cout<<"\n9.Number of Nodes";
-        cout<<"\n10.Exit\n";
+        cout<<"\n10.Delete a node";
+        cout<<"\n11.Exit\n";
         cin>>ch;
         switch(ch)
         {
@@ -181,6 +253,11 @@ int main()
             cout<<"\nTotal Number of Nodes = "<<total_nodes(root,x);
             break;
         case 10:
+            cout<<"\nEnter the element to delete : ";
+            cin>>x;
+            root=del_node(root,x);
+            break;
+        case 11:
             flag=0;
             break;
         default:
