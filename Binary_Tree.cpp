@@ -159,12 +159,11 @@ NODE del_node(NODE root,int x)
     }
     else
     {
-        NODE temp=cur,rp=cur->right,s=rp->left;
-        while(s!=NULL)
+        NODE temp=cur,rp=cur->right;//s=rp->left;
+        while(rp->left!=NULL)
         {
             temp=rp;
-            rp=s;
-            s=rp->left;
+            rp=rp->left;
         }
         if(temp!=cur)
         {
