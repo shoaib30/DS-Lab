@@ -114,6 +114,70 @@ int total_nodes(NODE root,int &i)
     }
     return i;
 }
+NODE del_recur(NODE root,int x)
+{
+    if(root==NULL)
+        return root;
+    else if(x<root->data)
+        root->left=del_recur(root->left,x);
+    else if(x>root->data)
+        root->right=del_recur(root->right,x);
+    else
+    {
+
+        NODE temp;
+        if(root->left==NULL)
+            temp=root->right;
+        else
+            temp=root->left;
+        return temp;
+    }
+    return root;
+}
+NODE search_least_par(NODE root)
+{
+    if(root==NULL)
+        return root;
+    else if(root->left==NULL)
+    {
+        return root;
+    }
+    else if(root->left->left==NULL)
+    {
+        NODE temp=root->left;
+        root->left=root->left->right;
+        return temp;
+    }
+    else
+        return search_least_par(root->left);
+}
+NODE del_recur1(NODE root,int x)
+{
+    if(root==NULL)
+        return root;
+    else if(x<root->data)
+        root->left=del_recur(root->left,x);
+    else if(x>root->data)
+        root->right=del_recur(root->right,x);
+    else
+    {
+
+        NODE temp;
+        if(root->right==NULL)
+        {
+            temp=root->left;
+        }
+        else
+        {
+            temp=search_least_par(root->right);
+            temp->left=root->left;
+            if(root->right!=temp)
+                temp->right=root->right;
+        }
+        return temp;
+    }
+    return root;
+}
 NODE del_node(NODE root,int x)
 {
     if(root==NULL)
@@ -200,7 +264,9 @@ int main()
         cout<<"\n8.Number of leaves";
         cout<<"\n9.Number of Nodes";
         cout<<"\n10.Delete a node";
-        cout<<"\n11.Exit\n";
+        cout<<"\n11.Exit";
+        cout<<"\n12.Delete recur case 1";
+        cout<<"\n13.Delete recur case 1 2\n";
         cin>>ch;
         switch(ch)
         {
@@ -258,6 +324,16 @@ int main()
             break;
         case 11:
             flag=0;
+            break;
+        case 12:
+            cout<<"\nEnter element to delete :";
+            cin>>x;
+            root=del_recur(root,x);
+            break;
+        case 13:
+            cout<<"\nEnter element to delete: ";
+            cin>>x;
+            root=del_recur1(root,x);
             break;
         default:
             cout<<"Wrong option";
