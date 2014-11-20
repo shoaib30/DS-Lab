@@ -119,9 +119,9 @@ NODE del_recur(NODE root,int x)
     if(root==NULL)
         return root;
     else if(x<root->data)
-        root->left=del_recur(root->left,x);
+        root->left=del_recur1(root->left,x);
     else if(x>root->data)
-        root->right=del_recur(root->right,x);
+        root->right=del_recur1(root->right,x);
     else
     {
 
@@ -265,8 +265,8 @@ int main()
         cout<<"\n9.Number of Nodes";
         cout<<"\n10.Delete a node";
         cout<<"\n11.Exit";
-        cout<<"\n12.Delete recur case 1";
-        cout<<"\n13.Delete recur case 1 2\n";
+        //cout<<"\n12.Delete recur case 1";
+        cout<<"\n13.Delete recurrence case 1 2\n";
         cin>>ch;
         switch(ch)
         {
@@ -325,11 +325,11 @@ int main()
         case 11:
             flag=0;
             break;
-        case 12:
+        /*case 12:
             cout<<"\nEnter element to delete :";
             cin>>x;
             root=del_recur(root,x);
-            break;
+            break;*/
         case 13:
             cout<<"\nEnter element to delete: ";
             cin>>x;
