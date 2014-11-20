@@ -114,7 +114,7 @@ int total_nodes(NODE root,int &i)
     }
     return i;
 }
-NODE del_recur(NODE root,int x)
+/*NODE del_recur(NODE root,int x)
 {
     if(root==NULL)
         return root;
@@ -133,7 +133,7 @@ NODE del_recur(NODE root,int x)
         return temp;
     }
     return root;
-}
+}*/
 NODE search_least_par(NODE root)
 {
     if(root==NULL)
@@ -156,12 +156,11 @@ NODE del_recur1(NODE root,int x)
     if(root==NULL)
         return root;
     else if(x<root->data)
-        root->left=del_recur1(root->left,x //now it works properly... i tried out the previous one.... it was deleting extra nodes 
-    else if(x>root->data)                   // and remove the other recursive delete.. this takes care of both anyways
+        root->left=del_recur1(root->left,x );
+    else if(x>root->data)
         root->right=del_recur1(root->right,x);
     else
     {
-
         NODE temp;
         if(root->right==NULL)
         {
@@ -264,9 +263,10 @@ int main()
         cout<<"\n8.Number of leaves";
         cout<<"\n9.Number of Nodes";
         cout<<"\n10.Delete a node";
-        cout<<"\n11.Exit";
-        //cout<<"\n12.Delete recur case 1";
-        cout<<"\n13.Delete recurrence case 1 2\n";
+        cout<<"\n11.Delete a node (recurrence)";
+        cout<<"\n12.Exit\n";
+        //cout<<"\n13.Delete recur case 1";
+
         cin>>ch;
         switch(ch)
         {
@@ -323,18 +323,18 @@ int main()
             root=del_node(root,x);
             break;
         case 11:
-            flag=0;
-            break;
-        /*case 12:
-            cout<<"\nEnter element to delete :";
-            cin>>x;
-            root=del_recur(root,x);
-            break;*/
-        case 13:
             cout<<"\nEnter element to delete: ";
             cin>>x;
             root=del_recur1(root,x);
             break;
+        case 12:
+            flag=0;
+            break;
+        /*case 13:
+            cout<<"\nEnter element to delete :";
+            cin>>x;
+            root=del_recur(root,x);
+            break;*/
         default:
             cout<<"Wrong option";
             break;
