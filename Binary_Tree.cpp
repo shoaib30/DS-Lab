@@ -156,9 +156,9 @@ NODE del_recur1(NODE root,int x)
     if(root==NULL)
         return root;
     else if(x<root->data)
-        root->left=del_recur(root->left,x);
-    else if(x>root->data)
-        root->right=del_recur(root->right,x);
+        root->left=del_recur1(root->left,x //now it works properly... i tried out the previous one.... it was deleting extra nodes 
+    else if(x>root->data)                   // and remove the other recursive delete.. this takes care of both anyways
+        root->right=del_recur1(root->right,x);
     else
     {
 
