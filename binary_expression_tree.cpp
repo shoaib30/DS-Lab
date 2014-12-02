@@ -1,6 +1,7 @@
 #include<iostream>
 #include<stack>
 #include<string.h>
+#include<math.h>
 using namespace std;
 struct node
 {
@@ -19,26 +20,11 @@ NODE get_node(char x)
     n->right=NULL;
     return n;
 }
-//NODE set_left(NODE root,NODE x)
-//{
-//    if(root->left!=NULL)
-//        return root;
-//    root->left=x;
-//    return root;
-//}
-//NODE set_right(NODE root,NODE x)
-//{
-//    if(root->right!=NULL)
-//        return root;
-//    root->right=x;
-//    return root;
-//}
 stack<NODE>mstack;
 NODE make_tree(char exp[])
 {
     int i=0;
     NODE x=NULL;
-    cout<<"check1";
     while(exp[i]!='\0')
     {
         x=get_node(exp[i]);
@@ -76,7 +62,16 @@ void preorder(NODE p)
         preorder(p->right);
     }
 }
-int OP(char symbol,double op1,double op2)
+void postorder(NODE p)
+{
+    if(p!=NULL)
+    {
+        postorder(p->left);
+        postorder(p->right);
+        cout<<p->data<<" ";
+    }
+}
+int OP(char symbol,int op1,int op2)
 {
     switch(symbol)
     {
@@ -93,32 +88,41 @@ int OP(char symbol,double op1,double op2)
         return (pow(op1,op2));
     }
 }
-void eval(NODE root)
+void eval(NODE &root)
 {
     int x;
-    if(isdigit(root->left->data)&&isdigit(root->right->data))
+    if(root->left!=NULL&&root->right!=NULL)
     {
-        x=OP(root->data,root->left->data-'0',root->right->data-'0');
-        delete root->left;
-        delete root->right;
-        root->data=x;
-        root->right=root->left=NULL;
-    }
-    else()
-    {
-        root=root->left;
+        if(isdigit(root->left->data)&&isdigit(root->right->data))
+        {
+            x=OP(root->data,(root->left->data-'0'),(root->right->data-'0'));
+            delete root->left;
+            delete root->right;
+            root->data=x+'0';
+            root->right=root->left=NULL;
+        }
+        else
+        {
+            eval(root->left);
+            eval(root->right);
+            eval(root);
+        }
     }
 }
 int main()
 {
     char post[20];
-    cout<<"entr postfix expre"<<endl;
+    cout<<"Enter postfix expression"<<endl;
     cin>>post;
-    cout<<"check2";
     NODE root=make_tree(post);
-    cout<<"\n\n";
+    cout<<"\n\nInfix Expression: ";
     inorder(root);
-    cout<<"\n\n";
+    cout<<"\nPrefix Expresssion: ";
     preorder(root);
+    cout<<"\nPostfix Expresssion: ";
+    postorder(root);
+    cout<<"\n\nEvaluated Answer: ";
+    eval(root);
+    cout<<root->data;
     return 0;
 }
