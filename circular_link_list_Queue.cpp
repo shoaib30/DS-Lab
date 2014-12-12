@@ -35,7 +35,7 @@ NODE delete_front(NODE &last)
 {
     if(last==NULL)
     {
-        cout<<"\nList Empty ";
+        cout<<"\nQueue Empty ";
         return last;
     }
     else if(last->link==last)
@@ -52,7 +52,7 @@ void disp(NODE last)
 {
     if(last==NULL)
     {
-        cout<<"\nStack Empty ";
+        cout<<"\nQueue Empty ";
         return;
     }
     NODE temp=last->link;

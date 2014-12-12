@@ -33,7 +33,7 @@ NODE delete_front(NODE &last)
 {
     if(last==NULL)
     {
-        cout<<"\nList Empty ";
+        cout<<"\nStack Empty ";
         return last;
     }
     else if(last->link==last)
