@@ -64,7 +64,7 @@ void display(NODE root,int &n)
 int main()
 {
     NODE root=NULL;
-    int ch,n=1,x,nodes=0,pos;
+    int ch,n=1,x,nodes=0;
     cout<<"Enter choice";
     while(n==1)
     {
