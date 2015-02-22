@@ -14,7 +14,7 @@ NODE get_node()
         cout<<"Memory Full";
     return x;
 }
-NODE insert_rear(NODE &head,char x)
+NODE insert_front(NODE &head,char x)
 {
     NODE temp=get_node();
     temp->data=x;
@@ -25,11 +25,8 @@ NODE insert_rear(NODE &head,char x)
         head=temp;
         return head;
     }
-    NODE temp2=head;
-    while(temp2->next!=NULL)
-        temp2=temp2->next;
-    temp->prev=temp2;
-    temp2->next=temp;
+    temp->next=head;
+    head=temp;
     return head;
 }
 void display(NODE head)
@@ -47,7 +44,7 @@ void display(NODE head)
 NODE make_string_list(NODE &head,char a[])
 {
     for(int i=0;a[i]!='\0';i++)
-        head=insert_rear(head,a[i]);
+        head=insert_front(head,a[i]);
     return head;
 }
 int palin(NODE &head)

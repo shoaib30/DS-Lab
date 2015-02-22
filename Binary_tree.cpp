@@ -67,7 +67,7 @@ void postorder(NODE p)
         cout<<p->data<<"->";
     }
 }
-NODE search_node(NODE root,int x)
+/*NODE search_node(NODE root,int x)
 {
     if(root==NULL)
         return NULL;
@@ -98,7 +98,7 @@ NODE smallest(NODE root)
         return root;
     else
         return smallest(root->left);
-}
+}*/
 int no_of_leaves(NODE root,int &i)
 {
     if(root==NULL)

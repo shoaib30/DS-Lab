@@ -117,9 +117,9 @@ int main()
     NODE root=make_tree(post);
     cout<<"\n\nInfix Expression: ";
     inorder(root);
-    cout<<"\nPrefix Expresssion: ";
+    cout<<"\nPrefix Expression: ";
     preorder(root);
-    cout<<"\nPostfix Expresssion: ";
+    cout<<"\nPostfix Expression: ";
     postorder(root);
     cout<<"\n\nEvaluated Answer: ";
     eval(root);

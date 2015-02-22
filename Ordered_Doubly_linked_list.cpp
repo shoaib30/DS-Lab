@@ -38,8 +38,8 @@ NODE insert_order(NODE head,int x)
         temp->prev=temp3;
         temp->next=temp2;
         temp3->next=temp;
-        return head;
     }
+    return head;
 }
 void display(NODE head)
 {
@@ -59,7 +59,7 @@ int main()
     cout<<"Enter choice";
     while(n==1)
     {
-        cout<<"\n1.Insert Front"<<endl;
+        cout<<"\n1.Insert"<<endl;
         cout<<"2.Display"<<endl;
         cout<<"3.Exit"<<endl;
         cin>>ch;
